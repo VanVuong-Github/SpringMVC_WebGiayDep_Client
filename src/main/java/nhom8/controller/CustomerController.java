@@ -2,6 +2,7 @@ package nhom8.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,16 +19,12 @@ import nhom8.service.CustomerService;
 @RequestMapping("customers")
 public class CustomerController {
 	
+	@Autowired
 	private CustomerService customerService;
-
-	public CustomerController(CustomerService customerService) {
-		super();
-		this.customerService = customerService;
-	}
 	
 	@GetMapping("/list")
 	public String getAllCustomer(Model model) {
-		model.addAttribute("customers", customerService.getAllCustomer(model));
+		model.addAttribute("customers", customerService.getAllCustomer());
 		return "customer-list";
 	}
 	
